@@ -1,6 +1,12 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+
+:root{
+ --light-text: #666666;
+ --blue: #0049FF;
+}
+
   * {
   box-sizing: border-box;
 }
@@ -32,4 +38,10 @@ export default GlobalStyles;
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
+`;
+
+export const Page = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0rem 1rem;
 `;

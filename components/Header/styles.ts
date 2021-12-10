@@ -58,4 +58,28 @@ export const Container = styled.header`
       }
     }
   }
+
+  @media (max-width: 580px) {
+    .header {
+      .avatar {
+        &-img {
+        }
+      }
+      .navigation {
+        &-list {
+          &-item {
+            a {
+              font-size: 100%;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+      .contact {
+        &-btn {
+          padding: 0.25rem 1rem;
+        }
+      }
+    }
+  }
 `;
