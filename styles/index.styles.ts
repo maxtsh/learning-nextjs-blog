@@ -59,7 +59,60 @@ export const Container = styled.div`
       outline: none;
       border: none;
       color: #fff;
+      cursor: pointer;
       background-color: var(--blue);
+    }
+  }
+
+  .posts {
+    display: grid;
+    grid-gap: 3rem 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    margin-bottom: 2rem;
+
+    &-post {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 20px;
+      box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+
+      &-header {
+        display: flex;
+        justify-content: center;
+
+        img {
+          border-radius: 20px;
+        }
+      }
+
+      &-body {
+        position: relative;
+
+        &-info {
+          display: flex;
+          margin-top: 0.75rem;
+          font-size: 90%;
+          font-weight: 300;
+          color: var(--light-text);
+        }
+
+        &-title {
+          margin-top: 1rem;
+          font-size: 120%;
+          font-weight: 700;
+          color: #000;
+        }
+
+        &-description {
+          text-align: justify;
+          font-size: 100%;
+          font-weight: 400;
+          margin-top: 1rem;
+          color: var(--light-text);
+        }
+      }
     }
   }
 `;

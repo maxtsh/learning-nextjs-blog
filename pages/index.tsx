@@ -1,9 +1,19 @@
+import { MongoClient } from "mongodb";
+import { dbUrl } from "global/DB";
 import { Page } from "styles/Global";
 import { Container } from "styles/index.styles";
-import type { NextPage } from "next";
+import type { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import type { Post } from "global/types/post";
 import Head from "next/head";
+import Image from "next/image";
+import Button from "components/Button";
 
-const Home: NextPage = () => {
+interface Props {
+  posts: Post[];
+}
+
+const Home: NextPage<Props> = ({ posts }) => {
+  console.log(posts);
   return (
     <Page>
       <Head>
@@ -31,9 +41,58 @@ const Home: NextPage = () => {
           </p>
           <button className="intro-btn">Hire me</button>
         </div>
+        <div className="posts">
+          {posts.map((p: Post) => (
+            <div key={p._id} className="posts-post">
+              <div className="posts-post-header">
+                {p.image && (
+                  <Image
+                    width={350}
+                    height={350}
+                    src={p.image}
+                    alt="Post-Image"
+                  />
+                )}
+              </div>
+              <div className="posts-post-body">
+                <span className="posts-post-body-info">
+                  Date: {new Date(p.date).toDateString()}
+                </span>
+                <h3 className="posts-post-body-title">{p.title}</h3>
+                <p className="posts-post-body-description">{p.description}</p>
+                <Button color="#fff" bgColor="var(--red)">
+                  Read more
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
       </Container>
     </Page>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (): Promise<
+  GetStaticPropsResult<Props>
+> => {
+  const client = await MongoClient.connect(dbUrl);
+  const db = client.db();
+  let data: Post[] = [];
+
+  try {
+    const res = await db.collection("posts").find().sort({ _id: -1 }).toArray();
+    data = JSON.parse(JSON.stringify(res));
+    client.close();
+  } catch (err) {
+    console.log(err);
+  }
+
+  return {
+    props: {
+      posts: data,
+    },
+    revalidate: 30,
+  };
 };
 
 export default Home;
