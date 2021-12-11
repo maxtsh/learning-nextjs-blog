@@ -1,12 +1,7 @@
 import StyledButton from "./styles";
-import type { StyledProps } from "./types";
+import type { Props } from "./types";
 
-const Button: React.FC<StyledProps> = ({
-  color,
-  bgColor,
-  children,
-  ...props
-}) => {
+const Button: React.FC<Props> = ({ color, bgColor, children }) => {
   return (
     <StyledButton color={color} bgColor={bgColor}>
       {children}

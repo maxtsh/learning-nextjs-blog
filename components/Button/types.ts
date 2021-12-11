@@ -1,10 +1,5 @@
-export interface Props extends HTMLButtonElement {
-  text: string;
-  color: string;
-  bgColor: string;
-}
-
-export interface StyledProps {
+import { ButtonHTMLAttributes } from "react";
+export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: string;
   bgColor: string;
 }

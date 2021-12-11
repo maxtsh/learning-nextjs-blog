@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import type { StyledProps } from "./types";
+import type { Props } from "./types";
 
-const StyledButton = styled.button<StyledProps>`
+const StyledButton = styled.button<Props>`
   position: relative;
+  display: flex;
+  align-items: center;
   margin-top: 1rem;
   font-size: 110%;
   font-size: 500;

@@ -7,6 +7,7 @@ import type { Post } from "global/types/post";
 import Head from "next/head";
 import Image from "next/image";
 import Button from "components/Button";
+import { BsArrowRight } from "react-icons/bs";
 
 interface Props {
   posts: Post[];
@@ -17,7 +18,7 @@ const Home: NextPage<Props> = ({ posts }) => {
   return (
     <Page>
       <Head>
-        <title>Maxtsh Blog</title>
+        <title>Maxtsh Blog</title>gi
       </Head>
       <Container>
         <div className="intro">
@@ -62,6 +63,11 @@ const Home: NextPage<Props> = ({ posts }) => {
                 <p className="posts-post-body-description">{p.description}</p>
                 <Button color="#fff" bgColor="var(--red)">
                   Read more
+                  <BsArrowRight
+                    size={20}
+                    color="#fff"
+                    style={{ marginLeft: "1rem" }}
+                  />
                 </Button>
               </div>
             </div>
