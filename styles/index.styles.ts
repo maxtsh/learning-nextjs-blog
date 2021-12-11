@@ -73,6 +73,7 @@ export const Container = styled.div`
     &-post {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       cursor: pointer;
       padding: 1rem;
       border-radius: 20px;
