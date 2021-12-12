@@ -7,8 +7,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Container>
       <Head>
-        <title>Maxtsh Blog</title>
-        <meta name="description" content="Maxtsh Blog created by NEXT.JS v12" />
         <link rel="icon" href="/fav.jpeg" />
       </Head>
       <Header />

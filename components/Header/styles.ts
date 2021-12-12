@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.header`
   height: 100px;
   background-color: #fff;
+  border-bottom: 1px solid rgb(215, 216, 219);
 
   .header {
     padding: 0rem 1rem;
@@ -32,7 +33,13 @@ export const Container = styled.header`
         justify-content: space-between;
 
         &-item {
+          display: flex;
+          align-items: center;
           cursor: pointer;
+
+          &-icon {
+            margin-right: 0.25rem;
+          }
 
           a {
             font-size: 110%;
@@ -55,6 +62,7 @@ export const Container = styled.header`
         background-color: #fff;
         border: 2px solid #666;
         outline: none;
+        cursor: pointer;
       }
     }
   }
