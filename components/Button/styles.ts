@@ -7,8 +7,8 @@ const StyledButton = styled.button<Props>`
   align-items: center;
   margin-top: 1rem;
   font-size: 110%;
-  font-size: 500;
-  padding: 0.5rem 1.5rem;
+  font-size: 600;
+  padding: 0.5rem 1.25rem;
   border-radius: 40px;
   outline: none;
   border: none;

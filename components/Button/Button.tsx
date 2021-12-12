@@ -1,9 +1,9 @@
 import StyledButton from "./styles";
 import type { Props } from "./types";
 
-const Button: React.FC<Props> = ({ color, bgColor, children }) => {
+const Button: React.FC<Props> = ({ onClick, color, bgColor, children }) => {
   return (
-    <StyledButton color={color} bgColor={bgColor}>
+    <StyledButton onClick={onClick} color={color} bgColor={bgColor}>
       {children}
     </StyledButton>
   );

@@ -1,24 +1,32 @@
 import { MongoClient } from "mongodb";
+import { BsArrowRight } from "react-icons/bs";
 import { dbUrl } from "global/DB";
 import { Page } from "styles/Global";
 import { Container } from "styles/index.styles";
+import PostComponent from "components/Post";
 import type { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import type { Post } from "global/types/post";
 import Head from "next/head";
-import Image from "next/image";
-import Button from "components/Button";
-import { BsArrowRight } from "react-icons/bs";
+import React from "react";
 
 interface Props {
   posts: Post[];
 }
 
 const Home: NextPage<Props> = ({ posts }) => {
-  console.log(posts);
+  const handleHire = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    window.open("https://www.linkedin.com/in/mohammad-tatshahdoost/", "_blank");
+  };
+
   return (
     <Page>
       <Head>
-        <title>Maxtsh Blog</title>gi
+        <title>Maxtsh Blog Home</title>
+        <meta
+          name="description"
+          content="Maxtsh Blog created by NEXT.JS v12 Home Page"
+        />
       </Head>
       <Container>
         <div className="intro">
@@ -40,37 +48,18 @@ const Home: NextPage<Props> = ({ posts }) => {
             Experienced in multiple projects using JavaScript ES6+/ TypeScript,
             React.js, Redux.js, Redux.
           </p>
-          <button className="intro-btn">Hire me</button>
+          <button className="intro-btn" onClick={handleHire}>
+            Hire me
+            <BsArrowRight
+              size={25}
+              color="#fff"
+              style={{ marginLeft: "1rem" }}
+            />
+          </button>
         </div>
         <div className="posts">
           {posts.map((p: Post) => (
-            <div key={p._id} className="posts-post">
-              <div className="posts-post-header">
-                {p.image && (
-                  <Image
-                    width={350}
-                    height={350}
-                    src={p.image}
-                    alt="Post-Image"
-                  />
-                )}
-              </div>
-              <div className="posts-post-body">
-                <span className="posts-post-body-info">
-                  Date: {new Date(p.date).toDateString()}
-                </span>
-                <h3 className="posts-post-body-title">{p.title}</h3>
-                <p className="posts-post-body-description">{p.description}</p>
-                <Button color="#fff" bgColor="var(--red)">
-                  Read more
-                  <BsArrowRight
-                    size={20}
-                    color="#fff"
-                    style={{ marginLeft: "1rem" }}
-                  />
-                </Button>
-              </div>
-            </div>
+            <PostComponent key={p._id} data={p} />
           ))}
         </div>
       </Container>
@@ -86,7 +75,11 @@ export const getStaticProps: GetStaticProps = async (): Promise<
   let data: Post[] = [];
 
   try {
-    const res = await db.collection("posts").find().sort({ _id: -1 }).toArray();
+    const res = await db
+      .collection("posts")
+      .find({ featured: { $eq: true } })
+      .sort({ _id: -1 })
+      .toArray();
     data = JSON.parse(JSON.stringify(res));
     client.close();
   } catch (err) {
