@@ -39,7 +39,10 @@ const SinglePost: NextPage<Props> = ({ post }) => {
           content={post.description.substring(0, 20)}
         />
         <meta property="og:image" content={post.image || ""} />
-        <meta property="og:url" content={window.location.href} />
+        <meta
+          property="og:url"
+          content={`https://learning-nextjs-blog-tau.vercel.app/posts/${post._id}`}
+        />
       </Head>
       <Container>
         <div className="header">
