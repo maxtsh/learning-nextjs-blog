@@ -19,7 +19,8 @@
       "styles": ["styles/*"],
       "components": ["components/*"],
       "store": ["store/*"],
-      "global": ["global/*"]
+      "global": ["global/*"],
+      "utils": ["utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

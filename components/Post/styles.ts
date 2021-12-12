@@ -9,6 +9,7 @@ export const StyledPost = styled.div`
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 
   .header {
+    position: relative;
     display: flex;
     justify-content: center;
     cursor: pointer;

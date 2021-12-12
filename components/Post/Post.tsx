@@ -4,6 +4,7 @@ import Button from "components/Button";
 import { BsArrowRight } from "react-icons/bs";
 import type { Post } from "global/types/post";
 import { StyledPost } from "./styles";
+import { formatDate } from "utils/dates";
 
 interface Props {
   data: Post;
@@ -33,9 +34,7 @@ const PostComponet: React.FC<Props> = ({ data }) => {
         )}
       </div>
       <div className="body">
-        <span className="body-info">
-          Date: {new Date(data.date).toDateString()}
-        </span>
+        <span className="body-info">Date: {formatDate(data.date)}</span>
         <h3 className="body-title">{data.title}</h3>
         <p className="body-description">
           {data.description.substring(0, 50)}...

@@ -5,12 +5,14 @@ import { MongoClient, ObjectId } from "mongodb";
 import { dbUrl } from "global/DB";
 import { Container } from "styles/post/[id]";
 import type { Post } from "global/types/post";
+import { formatDate } from "utils/dates";
 import type {
   GetServerSideProps,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
 } from "next";
 import { BsClockHistory } from "react-icons/bs";
+import Head from "next/head";
 
 interface Props {
   post: Post | null;
@@ -27,11 +29,23 @@ const SinglePost: NextPage<Props> = ({ post }) => {
 
   return (
     <Page>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.description.substring(0, 20)} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:description"
+          content={post.description.substring(0, 20)}
+        />
+        <meta property="og:image" content={post.image || ""} />
+        <meta property="og:url" content={window.location.href} />
+      </Head>
       <Container>
         <div className="header">
           <h6 className="header-date">
             <BsClockHistory size={20} style={{ marginRight: "1rem" }} />
-            Posted on: {new Date(post.date).toLocaleString()}
+            Posted on: {formatDate(post.date)}
           </h6>
           <h1 className="header-title">{post.title}</h1>
         </div>

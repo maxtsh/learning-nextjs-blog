@@ -1,10 +1,11 @@
+import { Page } from "styles/Global";
 import type { NextPage } from "next";
 
 const Contact: NextPage = () => {
   return (
-    <div>
+    <Page>
       <h1>Contact</h1>
-    </div>
+    </Page>
   );
 };
 
