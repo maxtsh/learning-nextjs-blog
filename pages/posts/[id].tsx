@@ -5,6 +5,7 @@ import { MongoClient, ObjectId } from "mongodb";
 import { dbUrl } from "global/DB";
 import { Container } from "styles/post/[id]";
 import type { Post } from "global/types/post";
+import { formatDate } from "utils/dates";
 import type {
   GetServerSideProps,
   GetServerSidePropsContext,
@@ -31,7 +32,7 @@ const SinglePost: NextPage<Props> = ({ post }) => {
         <div className="header">
           <h6 className="header-date">
             <BsClockHistory size={20} style={{ marginRight: "1rem" }} />
-            Posted on: {new Date(post.date).toLocaleString()}
+            Posted on: {formatDate(post.date)}
           </h6>
           <h1 className="header-title">{post.title}</h1>
         </div>
