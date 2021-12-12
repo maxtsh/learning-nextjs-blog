@@ -12,6 +12,7 @@ import type {
   GetServerSidePropsResult,
 } from "next";
 import { BsClockHistory } from "react-icons/bs";
+import Head from "next/head";
 
 interface Props {
   post: Post | null;
@@ -28,6 +29,18 @@ const SinglePost: NextPage<Props> = ({ post }) => {
 
   return (
     <Page>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.description.substring(0, 20)} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:description"
+          content={post.description.substring(0, 20)}
+        />
+        <meta property="og:image" content={post.image || ""} />
+        <meta property="og:url" content={window.location.href} />
+      </Head>
       <Container>
         <div className="header">
           <h6 className="header-date">
