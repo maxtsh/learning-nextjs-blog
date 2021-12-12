@@ -70,6 +70,8 @@ const SinglePost: NextPage<Props> = ({ post }) => {
   );
 };
 
+// We could use getStaticProps here because the content will mostly never change for a post but
+// in getStaticProps for dynamic routes we will need getStaticPaths and for a large number of data its not a good idea
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<Props>> => {
